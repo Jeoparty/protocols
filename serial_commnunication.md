@@ -1,5 +1,8 @@
 # Serial communication
 
+## Handshake
+The Arduino will reset itself upon establishing a serial connection. After the successfull reset the arduino will sent `00 42` followed by one byte indicating the protocol version (currently `00`). The mediator responds with `13 37`.
+
 ## Opcodes
 
 ### 00 - Serial ready
