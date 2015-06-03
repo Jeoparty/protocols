@@ -21,21 +21,21 @@ The *ping* command can be sent at any time. A party receiving a ping must respon
 
 **Payload** This command has no payload.
 
-### 04 - Pong
+### 03 - Pong
 **Sender** *both*  
 **Payload length** *0*  
 Upon receiving a *ping* (02) the receiving party must respond with a *pong* within 100ms.
 
 **Payload** This command has no payload.
 
-### 05 - Buzz
+### 04 - Buzz
 **Sender** *arduino*  
 **Payload length** *1*  
 This command is sent when one of the buzzers is hit.
 
 **Payload** The ID of the buzzer hit
 
-### 06 - Set color
+### 05 - Set color
 **Sender** *mediator*  
 **Payload length** *4*  
 This command is sent to change the color of the buzzer LEDs.
