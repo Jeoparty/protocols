@@ -9,8 +9,9 @@ Sent when a buzzer is hit.
 
 ```json
 {
+	"type": "event",
 	"event": "buzz",
-	"pool": "<pool id>",
+	"group": "<port id>",
 	"buzzer": <buzzer id>
 }
 ```
@@ -20,21 +21,23 @@ Sent when one or more buzzers disconnected
 
 ```json
 {
+	"type": "event",
 	"event": "disconnected",
-	"pool": "<pool id>",
+	"group": "<port id>",
 	"buzzer": <buzzer id> or null
 }
 ```
 
-If only a single buzzer disconnected `buzzer id` contains the id of the disconnected buzzer. If the whole buzzer pool disconnected `buzzer id` is *null*.
+If only a single buzzer disconnected `buzzer id` contains the id of the disconnected buzzer. If the whole buzzer group disconnected `buzzer id` is *null*.
 
 ### Connected
-Sent when a buzzer is connected to an connected pool
+Sent when a buzzer is connected to an connected group
 
 ```json
 {
+	"type": "event",
 	"event": "connected",
-	"pool": "<pool id>",
+	"group": "<ports id>",
 	"buzzer": <buzzer id>
 }
 ```
@@ -46,7 +49,8 @@ Requests a list of *connected* buzzers
 
 ```json
 {
-	"list": "buzzers"
+	"type": "request",
+	"request": "list-buzzers"
 }
 ```
 
@@ -54,10 +58,11 @@ The mediator will respond with
 
 ```json
 {
-	"response": "buzzers",
-	"pools": [
+	"type": "data",
+	"data": "buzzers",
+	"groups": [
 		{
-			"pool": "<pool id>",
+			"group": "<port id>",
 			"buzzers": [<buzzer id>, <buzzer id>, ...]
 		},
 		...
@@ -65,12 +70,13 @@ The mediator will respond with
 }
 ```
 
-### List pools
-Requests a list of *available* pools
+### List ports
+Requests a list of *available* ports
 
 ```json
 {
-	"list": "pools"
+	"type": "request",
+	"request": "list-ports"
 }
 ```
 
@@ -78,17 +84,19 @@ The mediator will respond with
 
 ```json
 {
-	"response": "pools",
-	"pools": ["<pool id>", "<pool id>", ...]
+	"type": "data",
+	"data": "ports",
+	"ports": ["<port id>", "<port id>", ...]
 }
 ```
 
 ### Connect
-Connects the specified buzzer pool.
+Connects the specified buzzer group.
 ```json
 {
+	"type": "command",
 	"command": "connect",
-	"pool": "<pool id>"
+	"port": "<port id>"
 }
 ```
 
@@ -96,8 +104,9 @@ In case of success the mediator will respond with
 
 ```json
 {
-	"result": "connect",
-	"pool": "<pool id>",
+	"type": "data",
+	"data": "group",
+	"group": "<Connecting id>",
 	"buzzers": [<buzzer id>, <buzzer id>, ...]
 }
 ```
@@ -108,6 +117,7 @@ In case of an error the mediator will respond with error type *connect*
 All errors are sent in an uniform message:
 ```json
 {
+	"type": "error",
 	"error": "<error type>",
 	"message": "<error message>" or null,
 	"cause": "<cause>" or null
@@ -116,9 +126,7 @@ All errors are sent in an uniform message:
 
 | `error type` | cause | `message` | `cause` |
 |-----------------|---------|-----------------|------------|
-| connect | Connecting a buzzer pool failed | Error message or *null* | *null* |
-| invalid_json | Parsing a message failed due to invalid json sent | *null* | The invalid message | 
-| unknown_command | A unknown command was sent | *null* | The invalid message | 
+| connect | Connecting a buzzer group failed | Error message or *null* | *null* |
+| invalid_json | Parsing a message failed due to invalid json sent | *null* | The invalid message |
+| unknown_command | A unknown command was sent | *null* | The invalid message |
 | invalid_data_type | A message contained an invalid value | Error message | The invalid field |
-
-
