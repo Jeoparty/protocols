@@ -1,13 +1,14 @@
 # Serial communication
 
 ## Handshake
-The Arduino will reset itself upon establishing a serial connection. After the successfull reset the arduino will sent `00 42` followed by one byte indicating the protocol version (currently `00`). The mediator responds with `13 37`.
+The Arduino will reset itself upon establishing a serial connection. After the successfull reset the arduino will sent `00 42` followed by one byte indicating the protocol version (currently `00`). The mediator responds with `13 37`. The arduino should now send one byte containing the number of connected buzzers followed by a list of the ids of the connected buzzer (each one byte long).
 
 ## Opcodes
 
 ### 00 - Serial ready
 **Sender** *arduino*  
-TODO
+**Payload length** *2*
+Sent by the arduino after booting. It must be followed by `42` and one byte indicating the protocol version.
 
 ### 01 - Reset
 **Sender** *both*  
@@ -48,3 +49,17 @@ This command is sent to change the color of the buzzer LEDs.
 | red          |         1 |
 | green      |         1 |
 | blue        |         1 |
+
+### 06 - Connected
+**Sender** *arduino*
+**Payload length** *1*
+Sent when a buzzer is connected
+
+**Payload** The ID of the connected buzzer
+
+### 06 - Disconnected
+**Sender** *arduino*
+**Payload length** *1*
+Sent when a buzzer is disconnected
+
+**Payload** The ID of the disconnected buzzer
