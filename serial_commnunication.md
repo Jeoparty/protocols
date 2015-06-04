@@ -57,7 +57,7 @@ Sent when a buzzer is connected
 
 **Payload** The ID of the connected buzzer
 
-### 06 - Disconnected
+### 07 - Disconnected
 **Sender** *arduino*
 **Payload length** *1*
 Sent when a buzzer is disconnected
