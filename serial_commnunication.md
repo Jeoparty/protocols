@@ -51,15 +51,15 @@ This command is sent to change the color of the buzzer LEDs.
 | blue        |         1 |
 
 ### 06 - Connected
-**Sender** *arduino*
-**Payload length** *1*
+**Sender** *arduino*  
+**Payload length** *1*  
 Sent when a buzzer is connected
 
 **Payload** The ID of the connected buzzer
 
 ### 07 - Disconnected
-**Sender** *arduino*
-**Payload length** *1*
+**Sender** *arduino*  
+**Payload length** *1*  
 Sent when a buzzer is disconnected
 
 **Payload** The ID of the disconnected buzzer
