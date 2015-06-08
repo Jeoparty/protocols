@@ -86,9 +86,20 @@ The mediator will respond with
 {
 	"type": "data",
 	"data": "ports",
-	"ports": ["<port id>", "<port id>", ...]
+	"ports": [
+		{
+			"id": "<port id>",
+			"type": "<type>"
+		},
+		...
+	]
 }
 ```
+
+The possible types are
+
+- serial
+- keyboard
 
 ### Connect
 Connects the specified buzzer group.
@@ -96,7 +107,10 @@ Connects the specified buzzer group.
 {
 	"type": "command",
 	"command": "connect",
-	"port": "<port id>"
+	"port": {
+		"id": "<port id>",
+		"type": "<type>"
+	}
 }
 ```
 
