@@ -10,33 +10,28 @@ The Arduino will reset itself upon establishing a serial connection. After the s
 **Payload length** *2*
 Sent by the arduino after booting. It must be followed by `42` and one byte indicating the protocol version.
 
-### 01 - Reset
-**Sender** *both*  
-TODO
-
-
-### 02 - Ping
+### 01 - Ping
 **Sender** *both*  
 **Payload length** *0*  
 The *ping* command can be sent at any time. A party receiving a ping must respond with a *pong* (03) within 100ms. If they fail to do so the party which sent the ping may disconnect or reset the connection.
 
 **Payload** This command has no payload.
 
-### 03 - Pong
+### 02 - Pong
 **Sender** *both*  
 **Payload length** *0*  
 Upon receiving a *ping* (02) the receiving party must respond with a *pong* within 100ms.
 
 **Payload** This command has no payload.
 
-### 04 - Buzz
+### 03 - Buzz
 **Sender** *arduino*  
 **Payload length** *1*  
 This command is sent when one of the buzzers is hit.
 
 **Payload** The ID of the buzzer hit
 
-### 05 - Set color
+### 04 - Set color
 **Sender** *mediator*  
 **Payload length** *4*  
 This command is sent to change the color of the buzzer LEDs.
@@ -50,14 +45,14 @@ This command is sent to change the color of the buzzer LEDs.
 | green      |         1 |
 | blue        |         1 |
 
-### 06 - Connected
+### 05 - Connected
 **Sender** *arduino*  
 **Payload length** *1*  
 Sent when a buzzer is connected
 
 **Payload** The ID of the connected buzzer
 
-### 07 - Disconnected
+### 06 - Disconnected
 **Sender** *arduino*  
 **Payload length** *1*  
 Sent when a buzzer is disconnected
