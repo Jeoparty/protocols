@@ -13,14 +13,14 @@ Sent by the arduino after booting. It must be followed by `42` and one byte indi
 ### 01 - Ping
 **Sender** *both*  
 **Payload length** *0*  
-The *ping* command can be sent at any time. A party receiving a ping must respond with a *pong* (03) within 100ms. If they fail to do so the party which sent the ping may disconnect or reset the connection.
+The *ping* command can be sent at any time. A party receiving a ping must respond with a *pong* (02) within 100ms. If they fail to do so the party which sent the ping may disconnect or reset the connection.
 
 **Payload** This command has no payload.
 
 ### 02 - Pong
 **Sender** *both*  
 **Payload length** *0*  
-Upon receiving a *ping* (02) the receiving party must respond with a *pong* within 100ms.
+Upon receiving a *ping* (01) the receiving party must respond with a *pong* within 100ms.
 
 **Payload** This command has no payload.
 
