@@ -1,18 +1,20 @@
 # Websocket data
 
 ## States
-* New Game
+* New Game (`new`)
   * Scoreboard: Empty board
   * Admin: Select Round
-* Game Setup
+* Game Setup (`setup`)
   * Scoreboard
     * Preview board
     * New Player
   * Admin: Manage Players
-* Scoreboard
-* Answer (show answer, "buzzer time highscore")
-* Double Jeopardy
-* Results
+* Scoreboar (`scoreboard`)
+* Answer (`answer`)
+  * Show answer,
+  * "buzzer time highscore"
+* Double Jeopardy (`double_jeopardy`)
+* Results (`results`)
 
 ## Data
 ### Game
@@ -63,6 +65,7 @@
       "id": "uuid",
       "name": "Sample Player",
       "score": 42,
+      "active": true,
       "buzzed": null,
       "connected": true
     }
