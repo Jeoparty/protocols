@@ -31,8 +31,6 @@ Each round has it's own description file under it's round folder.
 
 ### Answer
 * `text`
-  * `data` is Answer text.
+  * `data` is answer text.
 * `img`, `audio`, `video`, `code`
-  * `data` is file path relative to `rounds.json`
-
-
+  * `data` is filename in `path` of category.
