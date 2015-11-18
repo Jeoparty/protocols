@@ -23,9 +23,8 @@
   "game": {
     "state": "new",
     "scoreboard": {},
-    "players": {},
+    "players": [],
     "answer": {},
-    "buzzer": {}
   }
 }
 ```
