@@ -17,32 +17,36 @@
 ## Data
 ### Game
 ```
-"game": {
-  "state": "new",
-  "scoreboard": {},
-  "players": {},
-  "answer": {},
-  "buzzer": {}
+{
+  "game": {
+    "state": "new",
+    "scoreboard": {},
+    "players": {},
+    "answer": {},
+    "buzzer": {}
+  }
 }
 ```
 
 ### Scoreboard
 ```
-"scoreboard": {
-  "name": "Sample round",
-  "points": [100, 200, 300, 400, 500],
-  "categories": [
-    {
-      "name": "Test Group 1",
-      "winner": [
-        0,
-        1,
-        false,
-        null,
-        null
-      ]
-    }
-  ]
+{
+  "scoreboard": {
+    "name": "Sample round",
+    "points": [100, 200, 300, 400, 500],
+    "categories": [
+      {
+        "name": "Test Group 1",
+        "winner": [
+          0,
+          1,
+          false,
+          null,
+          null
+        ]
+      }
+    ]
+  }
 }
 ```
 
@@ -53,26 +57,30 @@
 
 ### Player
 ```
-"players": [
-  {
-    "id": "uuid",
-    "name": "Sample Player",
-    "score": 42,
-    "buzzed": null,
-    "connected": true
-  }
-]
+{
+  "players": [
+    {
+      "id": "uuid",
+      "name": "Sample Player",
+      "score": 42,
+      "buzzed": null,
+      "connected": true
+    }
+  ]
+}
 ```
 `buzzed` contains the buzzer time relative to the start of the answer or
 `null` when not buzzed.
 
 ### Answer
 ```
-"answer": {
-  "type": "text",
-  "data": "Sample answer text.",
-  "score": 100,
-  "double_jeopardy": false
+{
+  "answer": {
+    "type": "text",
+    "data": "Sample answer text.",
+    "score": 100,
+    "double_jeopardy": false
+  }
 }
 ```
 
