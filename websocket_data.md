@@ -15,6 +15,17 @@
 * Results
 
 ## Data
+### Game
+```
+"game": {
+  "state": "new",
+  "scoreboard": {},
+  "players": {},
+  "answer": {},
+  "buzzer": {}
+}
+```
+
 ### Scoreboard
 ```
 "scoreboard": {
@@ -43,11 +54,17 @@
 ### Player
 ```
 "players": [
-  "name": "Sample Player",
-  "score": 42,
-  "connected": true
+  {
+    "id": "uuid",
+    "name": "Sample Player",
+    "score": 42,
+    "buzzed": null,
+    "connected": true
+  }
 ]
 ```
+`buzzed` contains the buzzer time relative to the start of the answer or
+`null` when not buzzed.
 
 ### Answer
 ```
@@ -64,27 +81,3 @@
 * `img`, `audio`, `video`, `code`
     * `data` is *base64* representation of file data.
 
-### Buzzer Times
-````
-"buzzer": [
-  null,
-  1337,
-  42,
-  null
-]
-```
-
-`buzzer` contains for every player at their player index an buzzer time
-relative to the start of the answer. `null` when not buzzed.
-
-### Scores
-```
-"scores": [
-  0,
-  500,
-  200
-  -100
-]
-```
-
-`scores` contains for every player at their player index an score value.
