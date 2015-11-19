@@ -10,7 +10,7 @@
     * New Player
   * Admin
     * Manage Players
-* Scoreboar (`scoreboard`)
+* Scoreboard (`scoreboard`)
 * Answer (`answer`)
   * Show answer
   * Buzzer time
@@ -24,7 +24,7 @@
   "game": {
     "state": "new",
     "scoreboard": {},
-    "players": [],
+    "players": {},
     "answer": {}
   }
 }
@@ -40,8 +40,8 @@
       {
         "name": "Test Group 1",
         "winner": [
-          0,
-          1,
+          "uuid-0",
+          "uuid-1",
           false,
           null,
           null
@@ -53,23 +53,22 @@
 ```
 
 `winner` contains for every answer
-* the `player index` of the winner,
+* the `player uuid` of the winner,
 * `false` for nobody or
 * `null` for open answers.
 
 ### Player
 ```
 {
-  "players": [
-    {
-      "id": "uuid",
+  "players": {
+    "uuid": {
       "name": "Sample Player",
       "score": 42,
       "active": true,
       "buzzed": null,
       "connected": true
     }
-  ]
+  }
 }
 ```
 `buzzed` contains the buzzer time relative to the start of the answer or
