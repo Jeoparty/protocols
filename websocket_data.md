@@ -8,11 +8,12 @@
   * Scoreboard
     * Preview board
     * New Player
-  * Admin: Manage Players
+  * Admin
+    * Manage Players
 * Scoreboar (`scoreboard`)
 * Answer (`answer`)
-  * Show answer,
-  * "buzzer time highscore"
+  * Show answer
+  * Buzzer time
 * Double Jeopardy (`double_jeopardy`)
 * Results (`results`)
 
@@ -24,7 +25,7 @@
     "state": "new",
     "scoreboard": {},
     "players": [],
-    "answer": {},
+    "answer": {}
   }
 }
 ```
@@ -90,4 +91,3 @@
   * `data` is answer text.
 * `img`, `audio`, `video`, `code`
     * `data` is *base64* representation of file data.
-
