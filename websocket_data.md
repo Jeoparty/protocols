@@ -17,6 +17,97 @@
 * Double Jeopardy (`double_jeopardy`)
 * Results (`results`)
 
+### New Game
+```json
+{
+	"state": "new",
+	"rounds": ["round1", "round2"]
+}
+```
+
+#### Event: Select Round
+```json
+{
+	"event": "select_round",
+	"round": "round1"
+}
+```
+
+### Game Setup
+```json
+{
+	"state":  "setup",
+	"action":{},
+	"scoreboard": {},
+	"players": {}
+}
+```
+* `action` Contains additional information about an currently performed action within this screen (e.g. add player). It may be ommited.
+
+#### Event: Add Player
+```json
+{
+	"event": "add_player",
+	"color": <specify me>
+}
+```
+
+#### Action: Edit Player
+```json
+{
+	"type": "edit_player",
+	"name": "playername",
+	"color": <specify me>
+}
+```
+
+##### Event: Update Name
+Updates the name of the currently edited Player
+```json
+{
+	"type": "update_player_name",
+	"name": "playername"
+}
+```
+
+##### Event: Confirm
+Confirms the current player data
+```json
+{
+	"type": "confirm_player"
+}
+```
+
+### Scoreboard
+```json
+{
+	"state": "scoreboard",
+	"scoreboard": {},
+	"players": {},
+	"current_player": "uuid"
+}
+```
+
+#### Event: Select answer
+```json
+{
+	"event": "select_answer",
+	"category": 0,
+	"answer": 0
+}
+```
+* `category` is the index of the category
+* `answer` is the index of the answer
+
+### Answer
+```json
+{
+	"state": "answer",
+	"answer": {},
+	"players": {}
+}
+```
+
 ## Data
 ### Game
 ```
@@ -63,6 +154,7 @@
   "players": {
     "uuid": {
       "name": "Sample Player",
+      "color": <specify me>,
       "score": 42,
       "active": true,
       "buzzed": null,
@@ -90,3 +182,14 @@
   * `data` is answer text.
 * `img`, `audio`, `video`, `code`
     * `data` is *base64* representation of file data.
+
+## Global Client Events
+### Connect buzzergroup
+```json
+{
+	"event": "connect_buzzergroup",
+	"type": "serial",
+	"device": "/dev/serial0"
+}
+```
+* `type` can be either `serial` or `keyboard`
