@@ -21,7 +21,10 @@
 ```json
 {
 	"state": "new",
-	"rounds": ["round1", "round2"]
+	"rounds": {
+	    "round1": "First Round",
+	    "round2": "Second Round"
+    }
 }
 ```
 
