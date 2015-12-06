@@ -68,7 +68,7 @@ Has to be sent by the client after it has connected and is ready to receive mess
 {
 	"type": "edit_player",
 	"name": "playername",
-	"color": <specify me>
+	"color": "#FF00FF"
 }
 ```
 
@@ -164,7 +164,7 @@ Confirms the current player data
   "players": {
     "uuid": {
       "name": "Sample Player",
-      "color": <specify me>,
+      "color": "#FF00FF",
       "score": 42,
       "active": true,
       "buzzed": null,
