@@ -76,7 +76,7 @@ Has to be sent by the client after it has connected and is ready to receive mess
 Updates the name of the currently edited Player
 ```json
 {
-	"type": "update_player_name",
+	"event": "update_player_name",
 	"name": "playername"
 }
 ```
