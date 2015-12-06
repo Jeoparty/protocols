@@ -1,5 +1,13 @@
 # Websocket data
 
+## Handshake
+```json
+{
+	"event": "ready"
+}
+```
+Has to be sent by the client after it has connected and is ready to receive messages.
+
 ## States
 * New Game (`new`)
   * Scoreboard: Empty board
