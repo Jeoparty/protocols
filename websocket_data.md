@@ -204,3 +204,32 @@ Confirms the current player data
 }
 ```
 * `type` can be either `serial` or `keyboard`
+
+## Errors
+### invalid_json
+```json
+{
+	"error": "invalid_json",
+	"errors": [
+		{
+			"description": "stuff is fucked up",
+			"context": ["error", "is located", "here"]
+		},
+		...
+	]
+}
+```
+### jeopardy_exception
+```json
+{
+	"error": "jeopardy_exception",
+	"message": "everyting is on fire!"
+}
+```
+### exception
+```json
+{
+	"error": "exception",
+	"message": "this shouldn't happen anyway"
+}
+```
