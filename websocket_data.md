@@ -84,6 +84,14 @@ Confirms the current player data
 }
 ```
 
+#### Start
+```json
+{
+    "event": "start"
+}
+```
+Starts the game
+
 ### Scoreboard
 ```json
 {
