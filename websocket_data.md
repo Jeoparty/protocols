@@ -84,7 +84,7 @@ Confirms the current player data
 }
 ```
 
-#### Start
+#### Event: Start
 ```json
 {
     "event": "start"
