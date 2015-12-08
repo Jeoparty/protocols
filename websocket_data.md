@@ -213,6 +213,14 @@ Confirms the current player data
 ```
 * `type` can be either `serial` or `keyboard`
 
+### Refresh
+```json
+{
+	"event": "refresh"
+}
+```
+Causes the current state to be resent
+
 ## Errors
 ### invalid_json
 ```json
