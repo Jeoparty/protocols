@@ -48,31 +48,25 @@ Has to be sent by the client after it has connected and is ready to receive mess
 ```json
 {
 	"state":  "setup",
-	"action":{},
 	"scoreboard": {},
-	"players": {}
+	"players": {},
+	"new_player": {
+		"name": "playername",
+		"color": "#FF00FF"
+	}
 }
 ```
-* `action` Contains additional information about an currently performed action within this screen (e.g. add player). It may be ommited.
+* `new_player` Is either `null` or 
 
 #### Event: Add Player
 ```json
 {
 	"event": "add_player",
-	"color": <specify me>
-}
-```
-
-#### Action: Edit Player
-```json
-{
-	"type": "edit_player",
-	"name": "playername",
 	"color": "#FF00FF"
 }
 ```
 
-##### Event: Update Name
+#### Event: Update Name
 Updates the name of the currently edited Player
 ```json
 {
@@ -81,11 +75,11 @@ Updates the name of the currently edited Player
 }
 ```
 
-##### Event: Confirm
+#### Event: Confirm
 Confirms the current player data
 ```json
 {
-	"type": "confirm_player"
+	"event": "confirm_player"
 }
 ```
 
@@ -115,9 +109,18 @@ Confirms the current player data
 {
 	"state": "answer",
 	"answer": {},
-	"players": {}
+	"players": {},
+	"buzzorder": {}
 }
 ```
+
+#### Event: Win, Fail, Oops, Exit
+```json
+{
+	"event": "win"
+}
+```
+* `event` can either be `win`, `fail`, `oops` or `exit`
 
 ## Data
 ### Game
