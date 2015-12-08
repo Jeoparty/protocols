@@ -111,7 +111,12 @@ Confirms the current player data
 	"state": "answer",
 	"answer": {},
 	"players": {},
-	"buzzorder": {}
+	"buzzorder": {
+		"uuid":time,
+		"uuid":delay,
+		"uuid":delay,
+		...
+	}
 }
 ```
 
