@@ -52,7 +52,8 @@ Has to be sent by the client after it has connected and is ready to receive mess
 	"players": {},
 	"new_player": {
 		"name": "playername",
-		"color": "#FF00FF"
+		"color": "#FF00FF",
+		"connected": true
 	}
 }
 ```
