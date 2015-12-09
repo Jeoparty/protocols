@@ -233,7 +233,15 @@ Causes the current state to be resent
 ```json
 {
     "event": "reconnect",
-    "player": "uuid
+    "player": "uuid"
+}
+```
+
+### Disconnect player
+```json
+{
+    "event": "disconnect",
+    "player": "uuid"
 }
 ```
 
