@@ -229,6 +229,14 @@ Starts the game
 ```
 Causes the current state to be resent
 
+### Reconnect player
+```json
+{
+    "event": "reconnect",
+    "player": "uuid
+}
+```
+
 ## Errors
 ### invalid_json
 ```json
