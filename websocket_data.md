@@ -119,12 +119,21 @@ Starts the game
 	"state": "answer",
 	"answer": {},
 	"players": {},
-	"buzzorder": {
-		"uuid":time,
-		"uuid":delay,
-		"uuid":delay,
+	"buzzorder": [
+		{
+			"id": "uuid",
+			"time": time
+		},
+		{
+			"id": "uuid",
+			"time": delay
+		},
+		{
+			"id": "uuid",
+			"time": delay
+		},
 		...
-	}
+	]
 }
 ```
 
@@ -178,16 +187,17 @@ Starts the game
 ### Player
 ```
 {
-  "players": {
-    "uuid": {
+  "players": [
+    {
+      "id": "uuid",
       "name": "Sample Player",
       "color": "#FF00FF",
       "score": 42,
       "active": true,
       "buzzed": null,
       "connected": true
-    }
-  }
+    },
+  ]
 }
 ```
 `buzzed` contains the buzzer time relative to the start of the answer or
