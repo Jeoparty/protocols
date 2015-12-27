@@ -113,6 +113,15 @@ Starts the game
 * `category` is the index of the category
 * `answer` is the index of the answer
 
+#### Event: Update player score
+```json
+{
+  "event": "update_score",
+  "player": "uuid",
+  "score": 42
+}
+```
+
 ### Answer
 ```json
 {
