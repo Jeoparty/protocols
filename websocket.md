@@ -1,146 +1,285 @@
-# Websocket
+# Websocket data
 
 ## Handshake
-
-## Events
-
-### Buzz
-Sent when a buzzer is hit.
-
 ```json
 {
-	"type": "event",
-	"event": "buzz",
-	"group": "<port id>",
-	"buzzer": <buzzer id>
+	"event": "ready"
+}
+```
+Has to be sent by the client after it has connected and is ready to receive messages.
+
+## States
+* New Game (`new`)
+  * Scoreboard: Empty board
+  * Admin: Select Round
+* Game Setup (`setup`)
+  * Scoreboard
+    * Preview board
+    * New Player
+  * Admin
+    * Manage Players
+* Scoreboard (`scoreboard`)
+* Answer (`answer`)
+  * Show answer
+  * Buzzer time
+* Double Jeopardy (`double_jeopardy`)
+* Results (`results`)
+
+### New Game
+```json
+{
+	"state": "new",
+	"rounds": {
+	    "round1": "First Round",
+	    "round2": "Second Round"
+    }
 }
 ```
 
-### Disconnected
-Sent when one or more buzzers disconnected
-
+#### Event: Select Round
 ```json
 {
-	"type": "event",
-	"event": "disconnected",
-	"group": "<port id>",
-	"buzzer": <buzzer id> or null
+	"event": "select_round",
+	"round": "round1"
 }
 ```
 
-If only a single buzzer disconnected `buzzer id` contains the id of the disconnected buzzer. If the whole buzzer group disconnected `buzzer id` is *null*.
-
-### Connected
-Sent when a buzzer is connected to an connected group
-
+### Game Setup
 ```json
 {
-	"type": "event",
-	"event": "connected",
-	"group": "<ports id>",
-	"buzzer": <buzzer id>
-}
-```
-
-
-## Commands
-### List buzzers
-Requests a list of *connected* buzzers
-
-```json
-{
-	"type": "request",
-	"request": "list-buzzers"
-}
-```
-
-The mediator will respond with
-
-```json
-{
-	"type": "data",
-	"data": "buzzers",
-	"groups": [
-		{
-			"group": "<port id>",
-			"buzzers": [<buzzer id>, <buzzer id>, ...]
-		},
-		...
-	]
-}
-```
-
-### List ports
-Requests a list of *available* ports
-
-```json
-{
-	"type": "request",
-	"request": "list-ports"
-}
-```
-
-The mediator will respond with
-
-```json
-{
-	"type": "data",
-	"data": "ports",
-	"ports": [
-		{
-			"id": "<port id>",
-			"type": "<type>"
-		},
-		...
-	]
-}
-```
-
-The possible types are
-
-- serial
-- keyboard
-
-### Connect
-Connects the specified buzzer group.
-```json
-{
-	"type": "command",
-	"command": "connect",
-	"port": {
-		"id": "<port id>",
-		"type": "<type>"
+	"state":  "setup",
+	"scoreboard": {},
+	"players": {},
+	"new_player": {
+		"name": "playername",
+		"color": "#FF00FF",
+		"connected": true
 	}
 }
 ```
+* `new_player` Is either `null` or 
 
-In case of success the mediator will respond with
-
+#### Event: Add Player
 ```json
 {
-	"type": "data",
-	"data": "group",
-	"group": "<Connecting id>",
-	"buzzers": [<buzzer id>, <buzzer id>, ...]
+	"event": "add_player",
+	"color": "#FF00FF"
 }
 ```
 
-In case of an error the mediator will respond with error type *connect*
+#### Event: Update Name
+Updates the name of the currently edited Player
+```json
+{
+	"event": "update_player_name",
+	"name": "playername"
+}
+```
+
+#### Event: Confirm
+Confirms the current player data
+```json
+{
+	"event": "confirm_player"
+}
+```
+
+#### Event: Start
+```json
+{
+    "event": "start"
+}
+```
+Starts the game
+
+### Scoreboard
+```json
+{
+	"state": "scoreboard",
+	"scoreboard": {},
+	"players": {},
+	"current_player": "uuid"
+}
+```
+
+#### Event: Select answer
+```json
+{
+	"event": "select_answer",
+	"category": 0,
+	"answer": 0
+}
+```
+* `category` is the index of the category
+* `answer` is the index of the answer
+
+### Answer
+```json
+{
+	"state": "answer",
+	"answer": {},
+	"players": {},
+	"buzzorder": [
+		{
+			"id": "uuid",
+			"time": time
+		},
+		{
+			"id": "uuid",
+			"time": delay
+		},
+		{
+			"id": "uuid",
+			"time": delay
+		},
+		...
+	]
+}
+```
+
+#### Event: Win, Fail, Oops, Exit
+```json
+{
+	"event": "win"
+}
+```
+* `event` can either be `win`, `fail`, `oops` or `exit`
+
+## Data
+### Game
+```
+{
+  "game": {
+    "state": "new",
+    "scoreboard": {},
+    "players": {},
+    "answer": {}
+  }
+}
+```
+
+### Scoreboard
+```
+{
+  "scoreboard": {
+    "points": [100, 200, 300, 400, 500],
+    "categories": [
+      {
+        "name": "Test Group 1",
+        "winner": [
+          "uuid-0",
+          "uuid-1",
+          false,
+          null,
+          null
+        ]
+      }
+    ]
+  }
+}
+```
+
+`winner` contains for every answer
+* the `player uuid` of the winner,
+* `false` for nobody or
+* `null` for open answers.
+
+### Player
+```
+{
+  "players": [
+    {
+      "id": "uuid",
+      "name": "Sample Player",
+      "color": "#FF00FF",
+      "score": 42,
+      "active": true,
+      "buzzed": null,
+      "connected": true
+    },
+  ]
+}
+```
+`buzzed` contains the buzzer time relative to the start of the answer or
+`null` when not buzzed.
+
+### Answer
+```
+{
+  "answer": {
+    "type": "text",
+    "data": "Sample answer text.",
+    "score": 100,
+    "double_jeopardy": false
+  }
+}
+```
+
+* `text`
+  * `data` is answer text.
+* `img`, `audio`, `video`, `code`
+    * `data` is *base64* representation of file data.
+
+## Global Client Events
+### Connect buzzergroup
+```json
+{
+	"event": "connect_buzzergroup",
+	"type": "serial",
+	"device": "/dev/serial0"
+}
+```
+* `type` can be either `serial` or `keyboard`
+
+### Refresh
+```json
+{
+	"event": "refresh"
+}
+```
+Causes the current state to be resent
+
+### Reconnect player
+```json
+{
+    "event": "reconnect",
+    "player": "uuid"
+}
+```
+
+### Disconnect player
+```json
+{
+    "event": "disconnect",
+    "player": "uuid"
+}
+```
 
 ## Errors
-All errors are sent in an uniform message:
+### invalid_json
 ```json
 {
-	"type": "error",
-	"error": "<error type>",
-	"message": "<error message>" or null,
-	"cause": "<cause>" or null
+	"error": "invalid_json",
+	"errors": [
+		{
+			"description": "stuff is fucked up",
+			"context": ["error", "is located", "here"]
+		},
+		...
+	]
 }
 ```
-
-| `error type` | cause | `message` | `cause` |
-|-----------------|---------|-----------------|------------|
-| connect | Connecting a buzzer group failed | Error message or *null* | *null* |
-| invalid_json | Parsing a message failed due to invalid json sent | *null* | The invalid message |
-| unknown_command | A unknown command was sent | *null* | The invalid message |
-| invalid_data_type | A message contained an invalid value | Error message | The invalid field |
+### jeopardy_exception
+```json
+{
+	"error": "jeopardy_exception",
+	"message": "everyting is on fire!"
+}
+```
+### exception
+```json
+{
+	"error": "exception",
+	"message": "this shouldn't happen anyway"
+}
+```
